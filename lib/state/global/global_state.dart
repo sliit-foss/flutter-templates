@@ -7,17 +7,11 @@ class GlobalState extends Equatable {
 
   const GlobalState({this.loading = false, this.locale = "en", this.theme = "light"});
 
-  GlobalState copyWith({
-    bool? loading,
-    String? locale,
-    String? theme,
-  }) {
-    return GlobalState(
-      loading: loading ?? this.loading,
-      locale: locale ?? this.locale,
-      theme: theme ?? this.theme,
-    );
-  }
+  GlobalState copyWith({bool? loading, String? locale, String? theme}) => GlobalState(
+        loading: loading ?? this.loading,
+        locale: locale ?? this.locale,
+        theme: theme ?? this.theme,
+      );
 
   @override
   List<Object> get props => [loading, locale, theme];
