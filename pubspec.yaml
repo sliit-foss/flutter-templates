@@ -25,6 +25,8 @@ dependencies:
   cached_network_image: 3.2.3
   cupertino_icons: 1.0.2
   enhanced_http: 3.0.2
+  equatable: 2.0.5
+  flutter_bloc: 8.1.2
   flutter_dotenv: 5.0.2
   flutter_secure_storage: 8.0.0
   google_fonts: 4.0.3

@@ -9,7 +9,6 @@ class Fact {
 
   Fact(this.fact, this.length);
 
-  factory Fact.fromJson(Map<String,dynamic>json)
-  =>_$FactFromJson(json);
+  factory Fact.fromJson(Map<String, dynamic> json) => _$FactFromJson(json);
   Map<String, dynamic> toJson() => _$FactToJson(this);
 }

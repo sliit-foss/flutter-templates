@@ -1,5 +1,5 @@
 import 'package:catfacts/services/core/api.instance.dart';
-import 'package:catfacts/models/fact/fact.dart';
+import 'package:catfacts/services/fact/model/fact.dart';
 
 class FactService {
   static Future<Fact> getFact() async {
