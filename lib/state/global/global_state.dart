@@ -5,7 +5,7 @@ class GlobalState extends Equatable {
   final String locale;
   final String theme;
 
-  const GlobalState({this.loading = false, this.locale = "en", this.theme = "light"});
+  const GlobalState({this.loading = false, this.locale = "ar", this.theme = "light"});
 
   GlobalState copyWith({bool? loading, String? locale, String? theme}) => GlobalState(
         loading: loading ?? this.loading,

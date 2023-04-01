@@ -1,11 +1,12 @@
 import 'dart:io';
-import 'package:catfacts/config/themes/themes.dart';
-import 'package:catfacts/state/global/global_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:catfacts/config/themes/themes.dart';
 import 'package:catfacts/config/secrets.dart';
 import 'package:catfacts/utils/app_http_overrides.dart';
+import 'package:catfacts/state/global/global_bloc.dart';
 import 'package:catfacts/screens/home/home.dart';
 
 void main() async {
@@ -28,10 +29,13 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<GlobalBloc, GlobalState>(
         builder: (context, state) {
           return MaterialApp(
-            title: 'Flutter Demo',
+            onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
             debugShowCheckedModeBanner: false,
             theme: Themes.list[state.theme],
-            home: const Home(title: 'Flutter Demo Home Page'),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: Locale(state.locale),
+            home: const Home(),
           );
         },
       ),

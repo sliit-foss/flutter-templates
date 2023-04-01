@@ -1,0 +1,8 @@
+{
+  "@@locale": "en",
+
+  "title": "Flutter Demo",
+  "you_have_pushed_the_button_this_many_times": "You have pushed the button this many times:",
+  "flutter_demo_home_page": "Flutter Demo Home Page",
+  "increment": "Increment"
+}

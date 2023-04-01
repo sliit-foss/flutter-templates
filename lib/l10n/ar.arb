@@ -1,0 +1,8 @@
+{
+  "@@locale": "ar",
+
+  "title": "عرض Flutter",
+  "you_have_pushed_the_button_this_many_times": "لقد ضغطت على الزر عدة مرات:",
+  "flutter_demo_home_page": "الصفحة الرئيسية لعرض Flutter Demo",
+  "increment": "زيادة راتب"
+}
