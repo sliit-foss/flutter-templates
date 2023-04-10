@@ -25,6 +25,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
@@ -43,6 +49,26 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            if (System.getenv("APP_ENV") == "production" || System.getenv("APP_ENV") == "staging") {
+                def tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+                def allFilesFromDir = new File(tmpFilePath).listFiles()
+                if(allFilesFromDir != null)
+                    storeFile allFilesFromDir.first()
+                storePassword = System.getenv("APP_UPLOAD_ALIAS_PASSWORD")
+                keyAlias = "upload"
+                keyPassword = System.getenv("APP_UPLOAD_KEY_PASSWORD")
+            } else {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+                storePassword keystoreProperties['storePassword']
+            }
+        }
     }
 
     buildTypes {

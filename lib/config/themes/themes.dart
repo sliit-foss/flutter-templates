@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:catfacts/config/themes/text.dart';
 
+export "colors.dart";
+
 class Themes {
   static final _light = ThemeData(
     primarySwatch: Colors.blue,

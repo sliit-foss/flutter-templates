@@ -5,9 +5,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:catfacts/config/themes/themes.dart';
 import 'package:catfacts/config/secrets.dart';
-import 'package:catfacts/utils/app_http_overrides.dart';
-import 'package:catfacts/state/global/global_bloc.dart';
+import 'package:catfacts/routes/routes.dart';
 import 'package:catfacts/screens/home/home.dart';
+import 'package:catfacts/state/ui/global/global_bloc.dart';
+import 'package:catfacts/utils/app_http_overrides.dart';
 
 void main() async {
   Paint.enableDithering = true;
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(state.locale),
+            onGenerateRoute: Routes.onGenerateRoute,
             home: const Home(),
           );
         },
