@@ -11,7 +11,7 @@ class FactBloc extends Bloc<FactEvent, FactState> {
     on<FetchFacts>((event, emit) async {
       emit(state.copyWith(facts: state.facts.copyWith(loading: event.useLoader)));
       List<Fact> facts = await FactService.getFacts();
-      emit(state.copyWith(facts: DataList(facts, loading: false)));
+      emit(state.copyWith(facts: DataList(facts, loading: false, initialFetchComplete: true)));
     });
   }
 }
