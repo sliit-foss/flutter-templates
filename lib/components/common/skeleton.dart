@@ -7,15 +7,10 @@ class Skeleton extends StatelessWidget {
   final double? width;
   final BorderRadiusGeometry? radius;
   final EdgeInsetsGeometry? margin;
+  final BoxShape? shape;
   final Widget? child;
 
-  const Skeleton(
-      {super.key,
-      this.height,
-      this.width,
-      this.radius,
-      this.margin,
-      this.child});
+  const Skeleton({super.key, this.height, this.width, this.radius, this.margin, this.shape, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +24,8 @@ class Skeleton extends StatelessWidget {
             margin: margin ?? EdgeInsets.zero,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: radius ?? BorderRadius.circular(8),
+              shape: shape ?? BoxShape.rectangle,
+              borderRadius: shape == null ? radius ?? BorderRadius.circular(8) : null,
             ),
           ),
     );
