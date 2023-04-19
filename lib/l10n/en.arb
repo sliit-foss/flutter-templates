@@ -3,5 +3,6 @@
 
   "title": "Cat Facts",
   "facts": "Facts",
-  "refresh": "Refresh"
+  "refresh": "Refresh",
+  "switchLanguage": "Switch Language"
 }
