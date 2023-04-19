@@ -1,5 +1,8 @@
+import 'package:catfacts/components/common/common.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:catfacts/state/data/fact/fact_bloc.dart';
 
 class Mobile extends StatefulWidget {
   const Mobile({super.key});
@@ -9,36 +12,61 @@ class Mobile extends StatefulWidget {
 }
 
 class _MobileState extends State<Mobile> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  @override
+  void initState() {
+    super.initState();
+    final factBloc = BlocProvider.of<FactBloc>(context);
+    if (!factBloc.state.facts.initialFetchComplete) factBloc.add(FetchFacts());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.flutter_demo_home_page),
+        title: Text(AppLocalizations.of(context)!.facts),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(AppLocalizations.of(context)!.you_have_pushed_the_button_this_many_times),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: BlocBuilder<FactBloc, FactState>(
+          buildWhen: (previous, current) => previous.facts != current.facts,
+          builder: (context, state) {
+            if (state.facts.loading) {
+              return ListView.builder(
+                itemCount: 20,
+                itemBuilder: (context, index) => Column(
+                  children: const [
+                    Skeleton(width: double.infinity, height: 94),
+                    Divider(),
+                  ],
+                ),
+              );
+            }
+            return ListView.builder(
+              itemCount: state.facts.data.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: ListTile(
+                        title: Text(state.facts.data[index].fact),
+                        subtitle: Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text(state.facts.data[index].length.toString()),
+                        ),
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                );
+              },
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: AppLocalizations.of(context)!.increment,
-        child: const Icon(Icons.add),
+        onPressed: () async => context.read<FactBloc>()..add(FetchFacts(useLoader: true)),
+        tooltip: AppLocalizations.of(context)!.refresh,
+        child: const Icon(Icons.refresh),
       ),
     );
   }

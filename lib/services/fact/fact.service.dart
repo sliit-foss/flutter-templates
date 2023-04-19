@@ -10,7 +10,7 @@ class FactService {
   }
 
   static Future<List<Fact>> getFacts() async {
-    List<Map<String, dynamic>> facts = await http.get("/facts");
-    return facts.map((fact) => Fact.fromJson(fact)).toList();
+    dynamic response = await http.get("/facts");
+    return (response["data"] as List).map((fact) => Fact.fromJson(fact)).toList();
   }
 }
