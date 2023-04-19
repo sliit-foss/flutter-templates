@@ -65,7 +65,7 @@ class _MobileState extends State<Mobile> {
                 itemCount: 20,
                 itemBuilder: (context, index) => Column(
                   children: const [
-                    Skeleton(width: double.infinity, height: 94),
+                    Skeleton(width: double.infinity, height: 94, radius: BorderRadius.zero),
                     Divider(),
                   ],
                 ),
