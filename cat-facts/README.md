@@ -1,10 +1,8 @@
 # cat-facts
 
-A template repository for a simple flutter application.
+A full fledged flutter template with support for state management, multi language / theme configuration, caching and layouts for multiple screen sizes.
 
-## Getting Started
-
-This project is a simply a starting point for a Flutter application. The directories are structured as follows:
+## File Structure
 
 - assets
     - images `(image assets)`

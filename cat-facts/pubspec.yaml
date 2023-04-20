@@ -1,5 +1,5 @@
 name: catfacts
-description: A template repository for a simple flutter application.
+description: A full fledged flutter template with support for state management, multi language / theme configuration, caching and layouts for multiple screen sizes.
 publish_to: 'none'
 
 # The following defines the version and build number for your application.
