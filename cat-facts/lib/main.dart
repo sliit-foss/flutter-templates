@@ -17,6 +17,7 @@ void main() async {
     HttpOverrides.global = AppHttpOverrides();
     await dotenv.load(fileName: ".env");
   }
+  Secrets.load();
   runApp(const MyApp());
 }
 
